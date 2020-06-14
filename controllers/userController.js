@@ -1,5 +1,5 @@
 const User = require('../models/User')
-
+const bcryptjs = require('bcryptjs');
 
 exports.createUser = async (req, res) => {
 
@@ -14,6 +14,10 @@ exports.createUser = async (req, res) => {
 
         // Create new user
         user =  new User(req.body);
+
+        // Hash password
+        const salt = await bcryptjs.genSalt(10);
+        user.password = await bcryptjs.hash(password, salt);
 
         // Save user
         await user.save();
