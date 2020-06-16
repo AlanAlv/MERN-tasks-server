@@ -10,11 +10,6 @@ const ProjectSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-    password: {
-        type: String,
-        required: true,
-        trim: true
-    },
     created: {
         type: Date,
         default: Date.now()
