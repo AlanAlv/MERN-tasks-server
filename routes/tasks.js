@@ -23,16 +23,14 @@ router.get('/',
     taskController.getTasks
 );
 
-/*
+
 // Updates task by id
 router.put('/:id', 
     auth,
-    [
-        check('name', 'Task name is required').not().isEmpty()
-    ],
     taskController.updateTask
 );
 
+/*
 // Deletes task by id
 router.delete('/:id', 
     auth,
