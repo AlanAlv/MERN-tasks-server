@@ -15,14 +15,15 @@ router.post('/',
         check('project', 'Project name is required').not().isEmpty()
     ],
     taskController.createTask
-);/* 
+);
 
-// Get all tasks
+// Get all tasks by project
 router.get('/', 
     auth,
     taskController.getTasks
 );
 
+/*
 // Updates task by id
 router.put('/:id', 
     auth,
