@@ -30,12 +30,12 @@ router.put('/:id',
     taskController.updateTask
 );
 
-/*
+
 // Deletes task by id
 router.delete('/:id', 
     auth,
     taskController.deleteTask
 );
- */
+ 
 
 module.exports = router;

@@ -113,3 +113,35 @@ exports.updateTask = async (req, res) => {
         res.status(500).send('Server error');
     }
 }
+
+// Delete Task
+exports.deleteTask = async (req, res) => {
+
+    try {
+        // Destructure project 
+        const { project} = req.body;
+
+        // Check task exists
+        let task = await Task.findById(req.params.id);
+
+        if (!task) {
+            return res.status(404).json({ msg: 'Task not found'})
+        }
+
+        const projectExist = await Project.findById(project);
+
+        // Check project creator
+        if (projectExist.creator.toString() !== req.user.id) {
+            return res.status(401).json({msg: 'Unauthorized'})
+        }
+
+        // Delete task
+        await Task.findOneAndRemove({_id: req.params.id});
+
+        res.json({ msg: 'Task deleted' });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Server error');
+    }
+}
