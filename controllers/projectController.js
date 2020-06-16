@@ -47,7 +47,7 @@ exports.updateProject = async (req, res) => {
         return res.status(400).json({errors: errors.array()});
     }
     
-    // Destructur project info
+    // Destructure project info
     const { name } = req.body;
     const newProject = {};
 
