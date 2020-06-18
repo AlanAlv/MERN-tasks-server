@@ -49,3 +49,14 @@ exports.authenticateUser = async (req, res) => {
         console.log(error);
     }
 }
+
+// Get authenticated user
+exports.authenticatedUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        res.json({user});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({msg: 'Server error'});
+    }
+}
