@@ -21,7 +21,7 @@ app.use(function(req, res, next){
 app.use(express.json({extended: true}));
 
 // App port
-const port = process.env.port || 4000;
+const port = process.env.PORT || 4000;
 
 // Import Routes
 app.use('/api/users', require('./routes/users'));
