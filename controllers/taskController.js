@@ -46,7 +46,7 @@ exports.getTasks = async (req, res) => {
     // Check project exists
     try {
         // Destructure project 
-        const { project } = req.body;
+        const { project } = req.query;
         
 
         const projectExist = await Project.findById(project);
@@ -60,7 +60,7 @@ exports.getTasks = async (req, res) => {
         }
 
         // Get tasks by project
-        const tasks = await Task.find({ project });
+        const tasks = await Task.find({ project }).sort({created: -1});
         res.json({ tasks });
 
     } catch (error) {
@@ -99,8 +99,8 @@ exports.updateTask = async (req, res) => {
 
         // Create object with new info
         const newTask = {};
-        if(name) newTask.name = name;
-        if(state) newTask.state = state;
+        newTask.name = name;
+        newTask.state = state;
 
         // Save task
         task = await Task.findOneAndUpdate({_id: req.params.id},
@@ -119,7 +119,7 @@ exports.deleteTask = async (req, res) => {
 
     try {
         // Destructure project 
-        const { project} = req.body;
+        const { project} = req.query;
 
         // Check task exists
         let task = await Task.findById(req.params.id);

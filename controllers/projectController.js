@@ -103,6 +103,8 @@ exports.deleteProject = async (req, res) => {
         // Delete
         project = await Project.findOneAndRemove ({ _id: req.params.id});
         res.json({ msg: 'Project Deleted' });
+        await Tarea.deleteMany({ project: req.params.id });
+
 
     } catch (error) {
         console.log(error);
