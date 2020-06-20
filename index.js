@@ -30,7 +30,7 @@ app.use('/api/projects', require('./routes/projects'));
 app.use('/api/tasks', require('./routes/tasks'));
 
 // Start app
-app.listen(port, '0,0,0,0',  () =>  {
+app.listen(port, '0.0.0.0', () =>  {
     console.log(`Server running on port ${port}`);
 });
 
